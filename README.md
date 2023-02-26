@@ -25,4 +25,4 @@
 
 ---
 
-![EMOJI LOTTO](lotto_00.png "Игра лото")
+![EMOJI LOTTO](lotto_00.jpg "Игра лото")
