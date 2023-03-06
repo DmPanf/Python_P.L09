@@ -1,6 +1,11 @@
 import pytest
 from lotto_game import Card, Game
 
+
+@pytest.fixture
+def game():
+    return Game(2)  # количество игроков
+
   
 def test_game_init(game):
     """
