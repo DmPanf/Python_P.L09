@@ -1,3 +1,5 @@
+from tools import clear_screen, random_list, emoji_digits
+
 def test_clear_screen():
     # Проверяем, что функция clear_screen() работает без ошибок
     clear_screen()
