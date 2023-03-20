@@ -1,6 +1,9 @@
 from random import randint as rnd
 import os
 
+# Для каждого класса в программе добавить магический метод __str__;
+
+
 def clear_screen():
     # Проверка: Operating System == Mac & Linux || Windows
     if os.name == 'posix':
