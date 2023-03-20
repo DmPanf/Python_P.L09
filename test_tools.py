@@ -1,8 +1,11 @@
 from tools import clear_screen, random_list, emoji_digits
 
+# Для каждого класса в программе добавить магический метод __str__;
+
 def test_clear_screen():
     # Проверяем, что функция clear_screen() работает без ошибок
     clear_screen()
+    
 
 def test_random_list():
     # Проверяем, что функция random_list() возвращает список указанной длины без повторений
@@ -10,6 +13,7 @@ def test_random_list():
     assert len(r_list) == 10
     assert len(set(r_list)) == 10
 
+    
 def test_emoji_digits():
     # Проверяем, что функция emoji_digits() заменяет числа на соответствующие emoji
     assert emoji_digits(0) == '⬜️0️⃣'
