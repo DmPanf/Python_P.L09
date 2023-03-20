@@ -1,6 +1,7 @@
 import pytest
 from lotto_game import Card, Game
 
+# Для каждого класса в программе добавить магический метод __str__;
 
 @pytest.fixture
 def game():
