@@ -13,6 +13,7 @@ class Card:
     card_crossed_num = -1
     emj = '⬜️'
 
+    
     def __init__(self, i_user):
         uniques_num = self.card_nums_in_row * self.card_rows  # количество уникальных чисел 5*3=15
         uniques = random_list(uniques_num)
@@ -27,6 +28,7 @@ class Card:
                 tmp.insert(index, self.card_empty_num)
             self.card_data += tmp  # формируем полную карточку для игры
 
+            
     def __str__(self):  # Функция заполнения карточки с числами графичискими элементами
         emj0 = '🔲'
         str_line = '〰️' * 26
@@ -45,10 +47,12 @@ class Card:
                 result += self.emj  # '⬜️'
         return result + str_line
 
+    
     def __contains__(self, item):  # метод класса: содержится ли заданный элемент в карточке игрока
         is_contains = item in self.card_data
         return is_contains
 
+    
     def cross_num(self, num):  # функция "зачеркивания" чисел на карточке при совпадении
         for index, item in enumerate(self.card_data):
             if item == num:
@@ -56,6 +60,7 @@ class Card:
                 return
         raise ValueError(f'❌ На карточке нет числа: {num}')
 
+        
     def closed(self) -> bool:  # если множества равны, то все ячейки на карточке заполнены, и функция возвращает True
         is_closed = set(self.card_data) == {self.card_empty_num, self.card_crossed_num}
         return is_closed
@@ -77,12 +82,14 @@ class Game:
     card_colors = ['⬜️', '🟥', '🟨', '🟦', '🟧', '🟪', '🟫', '🟩']
     user_icons = ['🤖 RO-Bot', '🚗', '🚕', '🚙', '🚚', '🚑', '🚒', '🚜']
 
+    
     def __init__(self, gamers_count):
-        gamers_max = 2 if gamers_count < 3 else gamers_count
-        for i in range(gamers_max):
+        self.gamers_max = 2 if gamers_count < 3 else gamers_count
+        for i in range(self.gamers_max):
             self.player_cards.append(Card(i + 1))
         self.game_barrels = random_list(90)
-
+        
+        
     def ask_to_cross(self, game_user_card, barrel) -> bool:
         # При выборе "зачеркнуть": если цифры на карточке нет - игрок проигрывает, и игра завершается
         # При выборе "продолжить": если цифра есть на карточке - игрок проигрывает, и игра завершается
@@ -92,6 +99,7 @@ class Game:
             return False
         return True
 
+    
     def check_winner_card(self, game_user_card, barrel):
         if barrel in game_user_card:  # зачеркиваем число в карточке текущего игрока (при наличии)
             game_user_card.cross_num(barrel)
@@ -99,6 +107,7 @@ class Game:
                 return True  # объявляем победителя
         return False  # продолжаем игру
 
+    
     def play_round(self, gamers_count):
         # функция выдает комбинацию status и номер user (int)
         # user=-1 с проигравшим или победителем не определились: продолжаем игру
@@ -121,6 +130,7 @@ class Game:
             if status:  # если на карточке не осталось чисел, то - окончание игры
                 return status, i + 1  # ✅ при заполнненой карточке объявляем победителя
 
+            
         time.sleep(0.2)
         clear_screen()
         return status, -1  # [-1] с проигравшим или победителем не определились: продолжаем игру
